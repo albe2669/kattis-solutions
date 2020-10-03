@@ -1,16 +1,18 @@
-import java.util.Scanner;
-
 import java.lang.Math;
+
+import java.io.BufferedReader;
+import java.io.BufferedOutputStream;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.io.IOException;
+import java.util.StringTokenizer;
+
 
 public class humancannonball2 {
     public static void main(String[] args) throws Exception {
-        Scanner scan = new Scanner(System.in);
-
         int n = scan.nextInt();
         for (int i = 0; i < n; i++) {
-            if (i != 1) {
-                continue;
-            }
+            
             double  v0      = (double)scan.nextDouble(),
                     theta   = Math.toRadians(scan.nextDouble()),
                     x       = (double)scan.nextDouble(),
@@ -20,16 +22,62 @@ public class humancannonball2 {
             double t = x/(v0*Math.cos(theta));
             double y = v0 * t * Math.sin(theta) - (0.5 * 9.81 * (t*t));
             
-            System.out.println(v0 * t * Math.sin(theta));
-            System.out.println((0.5 * 9.81 * (double)Math.pow(t, 2)));
-            
-            System.out.println(t);
-            System.out.print(y + " - ");
+           
             if (y > h2 - 1 || y < h1 + 1) {
                 System.out.println("Not Safe");
             } else {
                 System.out.println("Safe");
             }
         }
+        out.close();
+    }
+
+    //-----------PrintWriter for faster output---------------------------------
+    public static PrintWriter out = new PrintWriter(new BufferedOutputStream(System.out));
+    
+    public static MyScanner scan = new MyScanner();
+
+    //-----------MyScanner class for faster input----------
+    public static class MyScanner {
+        BufferedReader br;
+        StringTokenizer st;
+
+        public MyScanner() {
+            br = new BufferedReader(new InputStreamReader(System.in));
+        }
+
+        String next() {
+            while (st == null || !st.hasMoreElements()) {
+                try {
+                    st = new StringTokenizer(br.readLine());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            return st.nextToken();
+        }
+
+        int nextInt() {
+            return Integer.parseInt(next());
+        }
+
+        long nextLong() {
+            return Long.parseLong(next());
+        }
+
+        double nextDouble() {
+            return Double.parseDouble(next());
+        }
+
+        String nextLine() {
+            String str = "";
+            try {
+                str = br.readLine();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return str;
+        }
+
     }
 }
