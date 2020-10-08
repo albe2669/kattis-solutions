@@ -1,14 +1,22 @@
-use std::io::{self, BufRead};
+use std::io::{self};
+
+fn get_input(io : &std::io::Stdin) -> String {
+    let mut buffer = String::new();
+    io.read_line(&mut buffer).expect("Failed");
+    buffer
+}
+
+fn get_input_int(io : &std::io::Stdin) -> i64 {
+    return get_input(io).trim().parse::<i64>().unwrap();
+}
 
 fn main() {
     let stdin = io::stdin();
+    let n = get_input_int(&stdin);
     
-    for line in stdin.lock().lines().map(|l| l.unwrap()) {
-        let nums: Vec<i64> = line.split_whitespace()
-            .map(|num| num.parse().unwrap())
-            .collect();
-            
-        let a = nums[0];
-        let b = nums[1];
+    //let mut nums: Vec<i64> = Vec::new();
+    for _i in 0..n {
+        let t = get_input(&stdin);
+        println!("{}", t.trim().chars().count())
     }
 }
