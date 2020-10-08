@@ -1,33 +1,34 @@
-import java.lang.Math;
-
 import java.io.BufferedReader;
 import java.io.BufferedOutputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.io.IOException;
 import java.util.StringTokenizer;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
-
-public class humancannonball2 {
+public class icpcawards {
     public static void main(String[] args) throws Exception {
-        int n = scan.nextInt();
-        for (int i = 0; i < n; i++) {
-            
-            double  v0      = (double)scan.nextDouble(),
-                    theta   = Math.toRadians(scan.nextDouble()),
-                    x       = (double)scan.nextDouble(),
-                    h1      = (double)scan.nextDouble(),
-                    h2      = (double)scan.nextDouble();
+        int tc = scan.nextInt();
+        LinkedHashMap<String, String> c = new LinkedHashMap<String, String>();
 
-            double t = x/(v0*Math.cos(theta));
-            double y = v0 * t * Math.sin(theta) - (0.5 * 9.81 * (t*t));
+        for (int i = 0; i < tc; i++) {
+            String uni = scan.next();
+            String team = scan.next();
+
+            if (c.containsKey(uni)) continue;
             
-           
-            if (y > h2 - 1 || y < h1 + 1) {
-                System.out.println("Not Safe");
-            } else {
-                System.out.println("Safe");
+            c.put(uni, team);
+        }
+
+        int i = 0;
+        for (Map.Entry<String, String> entry : c.entrySet()) {
+            i++;
+
+            if (i == 13) {
+                break;
             }
+            System.out.println(entry.getKey() + " " + entry.getValue());
         }
         out.close();
     }

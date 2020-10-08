@@ -1,43 +1,39 @@
-import java.lang.Math;
-
 import java.io.BufferedReader;
 import java.io.BufferedOutputStream;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.StringTokenizer;
 
-
-public class humancannonball2 {
+public class pokerhand {
     public static void main(String[] args) throws Exception {
-        int n = scan.nextInt();
-        for (int i = 0; i < n; i++) {
-            
-            double  v0      = (double)scan.nextDouble(),
-                    theta   = Math.toRadians(scan.nextDouble()),
-                    x       = (double)scan.nextDouble(),
-                    h1      = (double)scan.nextDouble(),
-                    h2      = (double)scan.nextDouble();
-
-            double t = x/(v0*Math.cos(theta));
-            double y = v0 * t * Math.sin(theta) - (0.5 * 9.81 * (t*t));
-            
-           
-            if (y > h2 - 1 || y < h1 + 1) {
-                System.out.println("Not Safe");
+        HashMap<Character, Integer> cards = new HashMap<Character, Integer>();
+        for (int i = 0; i < 5; i++) {
+            char c = scan.next().toCharArray()[0];
+            if (cards.get(c) != null) {
+                cards.put(c, cards.get(c) + 1);
             } else {
-                System.out.println("Safe");
+                cards.put(c, 1);
             }
         }
+
+        int count = 0;
+        for (Integer i : cards.values()) {
+            if (i > count) {
+                count = i;
+            }
+        }
+        out.println(count);
         out.close();
     }
 
-    //-----------PrintWriter for faster output---------------------------------
+    // -----------PrintWriter for faster output---------------------------------
     public static PrintWriter out = new PrintWriter(new BufferedOutputStream(System.out));
-    
+
     public static MyScanner scan = new MyScanner();
 
-    //-----------MyScanner class for faster input----------
+    // -----------MyScanner class for faster input----------
     public static class MyScanner {
         BufferedReader br;
         StringTokenizer st;

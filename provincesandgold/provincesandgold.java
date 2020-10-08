@@ -1,5 +1,3 @@
-import java.lang.Math;
-
 import java.io.BufferedReader;
 import java.io.BufferedOutputStream;
 import java.io.InputStreamReader;
@@ -8,26 +6,24 @@ import java.io.IOException;
 import java.util.StringTokenizer;
 
 
-public class humancannonball2 {
+public class provincesandgold {
     public static void main(String[] args) throws Exception {
-        int n = scan.nextInt();
-        for (int i = 0; i < n; i++) {
-            
-            double  v0      = (double)scan.nextDouble(),
-                    theta   = Math.toRadians(scan.nextDouble()),
-                    x       = (double)scan.nextDouble(),
-                    h1      = (double)scan.nextDouble(),
-                    h2      = (double)scan.nextDouble();
+        int buyingPower = scan.nextInt() * 3 + scan.nextInt() * 2 + scan.nextInt();
+        
+        if (buyingPower >= 8) {
+            out.print("Province or ");
+        } else if (buyingPower >= 5) {
+            out.print("Duchy or ");
+        } else if (buyingPower >= 2) {
+            out.print("Estate or ");
+        }
 
-            double t = x/(v0*Math.cos(theta));
-            double y = v0 * t * Math.sin(theta) - (0.5 * 9.81 * (t*t));
-            
-           
-            if (y > h2 - 1 || y < h1 + 1) {
-                System.out.println("Not Safe");
-            } else {
-                System.out.println("Safe");
-            }
+        if (buyingPower >= 6) {
+            out.println("Gold");
+        } else if (buyingPower >= 3) {
+            out.println("Silver");
+        } else {
+            out.println("Copper");
         }
         out.close();
     }

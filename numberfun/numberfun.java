@@ -1,5 +1,3 @@
-import java.lang.Math;
-
 import java.io.BufferedReader;
 import java.io.BufferedOutputStream;
 import java.io.InputStreamReader;
@@ -8,25 +6,25 @@ import java.io.IOException;
 import java.util.StringTokenizer;
 
 
-public class humancannonball2 {
+public class numberfun {
     public static void main(String[] args) throws Exception {
-        int n = scan.nextInt();
-        for (int i = 0; i < n; i++) {
-            
-            double  v0      = (double)scan.nextDouble(),
-                    theta   = Math.toRadians(scan.nextDouble()),
-                    x       = (double)scan.nextDouble(),
-                    h1      = (double)scan.nextDouble(),
-                    h2      = (double)scan.nextDouble();
+        int tc = scan.nextInt();
+        for (int i = 0; i < tc; i++) {
+            double a = scan.nextInt();
+            double b = scan.nextInt();
+            double c = scan.nextInt();
 
-            double t = x/(v0*Math.cos(theta));
-            double y = v0 * t * Math.sin(theta) - (0.5 * 9.81 * (t*t));
-            
-           
-            if (y > h2 - 1 || y < h1 + 1) {
-                System.out.println("Not Safe");
+            if (
+                a + b == c ||
+                a - b == c ||
+                b - a == c ||
+                a * b == c ||
+                a / b == c ||
+                b / a == c
+            ) {
+                out.println("Possible");
             } else {
-                System.out.println("Safe");
+                out.println("Impossible");
             }
         }
         out.close();
