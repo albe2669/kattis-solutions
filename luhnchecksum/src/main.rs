@@ -15,14 +15,15 @@ fn main() {
     let t : u32 = get_input_int(&stdin);
 
     for _i in 0..t {
-        let n : Vec<char> = get_input(&stdin).trim().chars().collect::<Vec<char>>();
+        let mut n : Vec<char> = get_input(&stdin).trim().chars().collect::<Vec<char>>();
         let mut sum : u32 = 0;
 
-        for c in (0..n.len()).rev() {
+        n.reverse();
+        for c in 0..n.len() {
             let int : u32 = (n[c].to_string()).parse::<u32>().unwrap();
             let mut new_int : u32 = int;
 
-            if c % 2 == 0 {
+            if (c + 1) % 2 == 0 {
                 new_int *= 2;
 
                 if new_int > 9 {
@@ -35,7 +36,6 @@ fn main() {
                 }
             }
 
-            println!("{} - {} = {}", c, int, new_int);
             sum += new_int;
         }
 
