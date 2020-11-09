@@ -8,12 +8,6 @@ fn get_input(io : &std::io::Stdin) -> String {
 
 fn main() {
     let stdin = io::stdin();
-    let first : i64 = get_input(&stdin).trim().chars().filter(|c| *c == 'a').collect::<Vec<char>>().len() as i64;
-    let second : i64 = get_input(&stdin).trim().chars().filter(|c| *c == 'a').collect::<Vec<char>>().len() as i64;
 
-    if second > first {
-        println!("no");
-    } else {
-        println!("go");
-    }
+    println!("{}", if get_input(&stdin).trim().chars().filter(|c| *c == 'a').collect::<Vec<char>>().len() < get_input(&stdin).trim().chars().filter(|c| *c == 'a').collect::<Vec<char>>().len() {"no" } else { "go" });
 }
