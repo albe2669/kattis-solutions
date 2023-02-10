@@ -1,0 +1,3 @@
+
+    new_weight = (wat_height * wat_height * d_w + (h + wat_height) * (h - wat_height) * d_a) / 2
+    new_mass = wat_height * d_w + (h - wat_height) * 

@@ -13,7 +13,7 @@ kitty_cargo() {
 
   mkdir tmp && cd tmp
   # Use kitty to download the test files and move them into the create folder
-  kitty get $1 --lang rs
+  kitties get $1 --lang rs
   rm -f $1.rs || true
 
 
