@@ -6,31 +6,54 @@ fn get_input(io: &std::io::Stdin) -> String {
     buffer
 }
 
-fn search(fruit: u64, n: u64, fruits: &Vec<u64>, sum: u64, res: &mut u64) {
-    if sum >= 200 {
-        *res += sum;
-        return;
-    } else if fruit == n {
-        return;
+fn fill(n: usize) -> Vec<u64> {
+    let mut p2 = vec![0; n];
+    p2[0] = 1;
+
+    for i in 1..n {
+        p2[i] = p2[i - 1] << 1;
     }
 
-    for i in 0..n {
-        search(i + 1, n, fruits, sum + fruits[fruit as usize], res);
-    }
+    p2
 }
 
 fn main() {
     let stdin = io::stdin();
 
-    let n: u64 = get_input(&stdin).trim().parse().unwrap();
+    let n: usize = get_input(&stdin).trim().parse().unwrap();
 
     let fruits: Vec<u64> = get_input(&stdin)
-        .trim()
         .split_whitespace()
         .map(|x| x.parse().unwrap())
         .collect();
 
-    let mut res = 0;
-    search(0, n, &fruits, 0, &mut res);
-    println!("{}", res);
+    let p2 = fill(n);
+    let mut ans = 0;
+
+    (0..n).for_each(|i| {
+        ans += fruits[i] * p2[n - 1];
+    });
+
+    (0..n).for_each(|i| {
+        let mut w = fruits[i];
+        if w < 200 {
+            ans -= w;
+        }
+
+        (i + 1..n).for_each(|j| {
+            w = fruits[i] + fruits[j];
+            if w < 200 {
+                ans -= w;
+            }
+
+            (j + 1..n).for_each(|k| {
+                w = fruits[i] + fruits[j] + fruits[k];
+                if w < 200 {
+                    ans -= w;
+                }
+            });
+        });
+    });
+
+    println!("{}", ans);
 }
