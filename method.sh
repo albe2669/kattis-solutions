@@ -1,6 +1,16 @@
 #!/bin/sh
 
 kitty_cargo() {
+  executable="kitties"
+  if ! command -v "$executable" >/dev/null 2>&1; then
+    echo "kitties not found, falling back on kitty"
+    executable="kitty"
+  fi
+  if ! command -v "$executable" >/dev/null 2>&1; then
+    echo "kitty not found, exiting"
+    return 1
+  fi
+
   if [[ $# -ne 1 ]]; then
     echo "usage: kitty_cargo <id>"
     echo "       where <id> is the ID for the Kattis problem"
@@ -13,7 +23,7 @@ kitty_cargo() {
 
   mkdir tmp && cd tmp
   # Use kitty to download the test files and move them into the create folder
-  kitties get $1 --lang rs
+  "$executable" get $1 --lang rs
   rm -f $1.rs || true
 
 
