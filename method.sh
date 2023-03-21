@@ -8,7 +8,7 @@ kitty_cargo() {
   fi
 
   if [[ $# -ne 1 ]]; then
-    echo "usage: kitty_cargo <id>"
+    echo "usage: $0 <id>"
     echo "       where <id> is the ID for the Kattis problem"
     exit 1
   fi
