@@ -44,6 +44,9 @@ kitty_cargo() {
   rm -rf tmp
 
   ln src/main.rs $1.rs
+  echo "$1.rs" >> .gitignore
+  echo "$1" >> .gitignore
+  echo "target/" >> .gitignore
 }
 
 kitty_cargo $1
