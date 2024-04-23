@@ -1,4 +1,7 @@
-use std::io::{self, Read, Write};
+use std::{
+    io::{self, Read, Write},
+    process::Output,
+};
 
 // Fenwick tree
 struct FenwickTree {
@@ -8,7 +11,7 @@ struct FenwickTree {
 impl FenwickTree {
     fn new(n: usize) -> FenwickTree {
         FenwickTree {
-            tree: vec![0; n + 5],
+            tree: vec![0; n + 2],
         }
     }
 
@@ -25,7 +28,7 @@ impl FenwickTree {
     fn update(&mut self, n: usize, mut i: usize, x: i64) {
         i += 1;
 
-        while i < (n + 5) {
+        while i <= n {
             self.tree[i] += x;
             i += i & i.wrapping_neg();
         }
