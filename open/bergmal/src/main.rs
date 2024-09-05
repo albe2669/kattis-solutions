@@ -7,7 +7,5 @@ fn main() {
     let stdout = io::stdout().lock();
     let mut output = io::BufWriter::new(stdout);
 
-    output
-        .write_fmt(format_args!("{}\n", buffer.chars().next().unwrap()))
-        .unwrap();
+    output.write_fmt(format_args!("{}\n", buffer)).unwrap();
 }

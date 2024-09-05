@@ -8,6 +8,9 @@ fn main() {
     let mut output = io::BufWriter::new(stdout);
 
     output
-        .write_fmt(format_args!("{}\n", buffer.chars().next().unwrap()))
+        .write_fmt(format_args!(
+            "{}\n",
+            buffer.trim().chars().rev().collect::<String>()
+        ))
         .unwrap();
 }
