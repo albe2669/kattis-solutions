@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # All credit for the original version of this script goes to https://github.com/andreaswachs/Kattis and his kitty_cargo tool.
 
 kitty_cargo() {
